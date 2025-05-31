@@ -1,5 +1,5 @@
 import { ArrowRight, Sparkles, Zap, Globe, Moon, CompassIcon as Comet, AsteriskIcon as Asteroid } from "lucide-react"
-import spaceBackground from "../assets/space-visit-bg.jpg"
+import spaceBackground from "../assets/space-vsit.webp"
 import Header from "../components/Header"
 import "../animations/explore.css"
 import { Link } from "react-router-dom"
@@ -79,7 +79,7 @@ const celestialBodies = [
 
 function Explore() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen bg-black/80 text-white overflow-hidden">
       {/* Background */}
       <div className="fixed inset-0 z-0">
         <div
@@ -89,7 +89,7 @@ function Explore() {
             backgroundSize: "cover",
           }}
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/80" />
         {/* Animated particles */}
         <div className="absolute inset-0">
           <div className="particle particle-1"></div>

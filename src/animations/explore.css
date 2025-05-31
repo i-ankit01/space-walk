@@ -1,8 +1,8 @@
 /* Particle animations */
 .particle {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   background: radial-gradient(circle, rgba(168, 85, 247, 0.8) 0%, transparent 70%);
   border-radius: 50%;
   animation: float 6s ease-in-out infinite;

@@ -1,0 +1,99 @@
+/* Dwarf planet particle animations */
+.dwarf-planet-particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: dwarfPlanetFloat 16s ease-in-out infinite;
+}
+
+.dwarf-planet-particle-1 {
+  top: 35%;
+  left: 30%;
+  animation-delay: 0s;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.9) 0%, transparent 70%);
+}
+
+.dwarf-planet-particle-2 {
+  top: 50%;
+  left: 65%;
+  animation-delay: 6s;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.8) 0%, transparent 70%);
+}
+
+.dwarf-planet-particle-3 {
+  top: 45%;
+  left: 55%;
+  animation-delay: 12s;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.7) 0%, transparent 70%);
+}
+
+.dwarf-planet-particle-4 {
+  top: 65%;
+  left: 35%;
+  animation-delay: 4s;
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.8) 0%, transparent 70%);
+}
+
+.dwarf-planet-particle-5 {
+  top: 25%;
+  left: 30%;
+  animation-delay: 8s;
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.6) 0%, transparent 70%);
+}
+
+.dwarf-planet-particle-6 {
+  top: 40%;
+  left: 25%;
+  animation-delay: 14s;
+  background: radial-gradient(circle, rgba(202, 138, 4, 0.8) 0%, transparent 70%);
+}
+
+@keyframes dwarfPlanetFloat {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(-45px) translateX(35px) rotate(90deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-30px) translateX(-30px) rotate(180deg);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-55px) translateX(40px) rotate(270deg);
+    opacity: 0.9;
+  }
+}
+
+/* Title animation */
+.dwarf-planet-title {
+  animation: dwarfPlanetGlow 7s ease-in-out infinite alternate;
+}
+
+@keyframes dwarfPlanetGlow {
+  from {
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+  }
+  to {
+    text-shadow: 0 0 30px rgba(251, 191, 36, 0.8), 0 0 40px rgba(245, 158, 11, 0.3);
+  }
+}
+
+/* Card entrance animation */
+.dwarf-planet-type-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: dwarfPlanetCardSlideIn 0.6s ease-out forwards;
+}
+
+@keyframes dwarfPlanetCardSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

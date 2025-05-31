@@ -1,23 +1,10 @@
 "use client"
 
 import { ArrowLeft, Info, Zap, ExternalLink, Star, Globe, Rocket } from "lucide-react"
-import spaceBackground from "../assets/space-visit-bg.jpg"
+import spaceBackground from "../assets/space-vsit.webp"
 import "../animations/asteroid.css"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
-
-const asteroidTypes = [
-  { id: 1, name: "C-type (Carbonaceous)", color: "from-gray-600 to-gray-800" },
-  { id: 2, name: "S-type (Silicaceous)", color: "from-orange-500 to-red-600" },
-  { id: 3, name: "M-type (Metallic)", color: "from-silver-400 to-gray-600" },
-  { id: 4, name: "V-type (Vestoid)", color: "from-purple-500 to-indigo-600" },
-  { id: 5, name: "A-type (Olivine-rich)", color: "from-green-500 to-emerald-600" },
-  { id: 6, name: "E-type (Enstatite)", color: "from-yellow-400 to-amber-500" },
-  { id: 7, name: "P-type (Primitive)", color: "from-blue-500 to-cyan-600" },
-  { id: 8, name: "D-type (Organic-rich)", color: "from-pink-500 to-rose-600" },
-  { id: 9, name: "B-type (Primitive)", color: "from-teal-500 to-green-600" },
-  { id: 10, name: "X-type (Metallic)", color: "from-indigo-500 to-purple-600" },
-]
 
 const asteroidFacts = [
   "Most asteroids are found in the asteroid belt between Mars and Jupiter",
@@ -67,7 +54,7 @@ function AsteroidPage() {
     }, [bodies]);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen bg-black/80 text-white overflow-hidden">
       {/* Background */}
       <div className="fixed inset-0 z-0">
         <div
@@ -77,7 +64,7 @@ function AsteroidPage() {
             backgroundSize: "cover",
           }}
         />
-        <div className="absolute inset-0 bg-black/70" />
+       <div className="absolute inset-0 bg-black/80" />
         {/* Floating asteroid particles */}
         <div className="absolute inset-0">
           <div className="asteroid-particle asteroid-particle-1"></div>

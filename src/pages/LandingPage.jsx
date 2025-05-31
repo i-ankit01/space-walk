@@ -1,8 +1,11 @@
 import React from 'react'
 import Header from '../components/Header'
 import { ChevronRight, Star, Zap, Globe } from "lucide-react"
-import spaceBackground from "../assets/space-visit-bg.jpg"
+import spaceBackground from "../assets/space-vsit.webp"
 import Footer from '../components/Footer'
+import { Link } from 'react-router-dom'
+import "../animations/asteroid.css"
+
 
 const LandingPage = () => {
   return (
@@ -17,9 +20,20 @@ const LandingPage = () => {
             backgroundSize: "cover",
           }}
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/80" />
       </div>
-
+      
+      <div className="absolute inset-0 " />
+        {/* Floating asteroid particles */}
+        <div className="absolute inset-0">
+          <div className="asteroid-particle asteroid-particle-1"></div>
+          <div className="asteroid-particle asteroid-particle-2"></div>
+          <div className="asteroid-particle asteroid-particle-3"></div>
+          <div className="asteroid-particle asteroid-particle-4"></div>
+          <div className="asteroid-particle asteroid-particle-5"></div>
+          <div className="asteroid-particle asteroid-particle-6"></div>
+        </div>
+      
       {/* Content */}
       <div className="relative z-10">
         {/* Header */}
@@ -37,10 +51,11 @@ const LandingPage = () => {
               planets, the adventure awaits.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center ">
-              <button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-5 py-2 rounded-md cursor-pointer flex items-center justify-center transition-all">
+              <Link to={"/explore"}  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-5 py-2 rounded-md cursor-pointer flex items-center justify-center transition-all">
                 Start Exploring
                 <ChevronRight className="ml-2 h-4 w-4" />
-              </button>
+              </Link>
+              
               <button className="border border-purple-500 bg-black text-purple-400 hover:text-white hover:bg-purple-500/20 px-5 py-2 rounded-md cursor-pointer transition-colors">
                 Learn More
               </button>
