@@ -3,6 +3,12 @@ import spaceBackground from "../assets/space-vsit.webp"
 import Header from "../components/Header"
 import "../animations/explore.css"
 import { Link } from "react-router-dom"
+import planet from "../assets/planet.jpg"
+import moon from "../assets/moon.jpg"
+import dwarfplanet from "../assets/dwarf-planet.webp"
+import comet from "../assets/comet.jpg"
+import asteroid from "../assets/asteroid.jpg"
+import MobileNavbar from "../components/MobileNavbar"
 
 const celestialBodies = [
   {
@@ -16,7 +22,7 @@ const celestialBodies = [
     hoverBorder: "hover:border-orange-500/60",
     textColor: "text-orange-400",
     facts: ["Over 1 million known asteroids", "Mostly found in asteroid belt", "Can contain precious metals"],
-    image: "https://via.placeholder.com/400x300/ff6b35/ffffff?text=Asteroid",
+    image: asteroid,
     url: "/asteroid"
   },
   {
@@ -30,7 +36,7 @@ const celestialBodies = [
     hoverBorder: "hover:border-blue-500/60",
     textColor: "text-blue-400",
     facts: ["8 planets in our solar system", "Can have multiple moons", "Diverse atmospheric compositions"],
-    image: "https://via.placeholder.com/400x300/3b82f6/ffffff?text=Planet",
+    image: planet,
     url : "/planet"
   },
   {
@@ -44,7 +50,7 @@ const celestialBodies = [
     hoverBorder: "hover:border-emerald-500/60",
     textColor: "text-emerald-400",
     facts: ["Made of ice, dust, and rock", "Develop tails near the sun", "Originate from outer solar system"],
-    image: "https://via.placeholder.com/400x300/10b981/ffffff?text=Comet",
+    image: comet,
     url : "/comet"
   },
   {
@@ -58,7 +64,7 @@ const celestialBodies = [
     hoverBorder: "hover:border-purple-500/60",
     textColor: "text-purple-400",
     facts: ["Over 200 moons in our solar system", "Influence planetary tides", "Some have subsurface oceans"],
-    image: "https://via.placeholder.com/400x300/a855f7/ffffff?text=Moon",
+    image: moon,
     url : "/moon"
   },
   {
@@ -72,7 +78,7 @@ const celestialBodies = [
     hoverBorder: "hover:border-yellow-500/60",
     textColor: "text-yellow-400",
     facts: ["5 recognized dwarf planets", "Pluto is the most famous", "Found in outer solar system"],
-    image: "https://via.placeholder.com/400x300/eab308/ffffff?text=Dwarf+Planet",
+    image: dwarfplanet,
     url : "/dwarf-planet"
   },
 ]
@@ -99,7 +105,8 @@ function Explore() {
           <div className="particle particle-5"></div>
         </div>
       </div>
-
+        
+        <MobileNavbar/>
       {/* Content */}
       <div className="relative z-10">
         {/* Header */}
@@ -108,30 +115,30 @@ function Explore() {
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-16">
           <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400">
+            <h1 className="text-4xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400">
               Cosmic Explore
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            <p className="text-md md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
               Embark on an extraordinary journey through space and discover the fascinating celestial bodies that
               populate our universe
             </p>
-            <div className="flex items-center justify-center gap-2 text-cyan-400">
+            <div className="w-max mx-auto flex items-center justify-center px-4 py-1 rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 gap-2 shadow-inner shadow-black font-semibold text-black">
               <Sparkles className="h-5 w-5 animate-pulse" />
-              <span className="text-lg">Choose your cosmic adventure</span>
+              <span className="text-xs md:text-lg">Choose your cosmic adventure</span>
               <Sparkles className="h-5 w-5 animate-pulse" />
             </div>
           </div>
         </section>
 
         {/* Celestial Bodies Grid */}
-        <section className="container mx-auto px-4 py-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <section className="container mx-auto px-4 md:py-8">
+          <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {celestialBodies.map((body, index) => {
               const IconComponent = body.icon
               return (
                 <div
                   key={body.id}
-                  className={`group relative bg-gray-900/70 backdrop-blur-md p-6 rounded-2xl border ${body.borderColor} ${body.hoverBorder} transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer Explore-card`}
+                  className={`group relative md:h-142 md:w-92 bg-gray-900/70 backdrop-blur-md p-6 rounded-2xl border ${body.borderColor} ${body.hoverBorder} transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer Explore-card`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {/* Glow effect */}
@@ -146,9 +153,9 @@ function Explore() {
                       <div
                         className={`${body.bgColor} p-3 rounded-xl group-hover:scale-110 transition-transform duration-300`}
                       >
-                        <IconComponent className={`h-8 w-8 ${body.textColor}`} />
+                        <IconComponent className={`md:h-8 md:w-8 ${body.textColor}`} />
                       </div>
-                      <h3 className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
+                      <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
                         {body.name}
                       </h3>
                     </div>
@@ -179,7 +186,7 @@ function Explore() {
 
                     {/* Explore Button */}
                     <Link to={body.url}
-                      className={`w-full bg-gradient-to-r ${body.color} hover:shadow-lg hover:shadow-${body.textColor}/25 text-white font-semibold py-3 px-6 rounded-lg cursor-pointer transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-105`}
+                      className={`w-full bg-gradient-to-r ${body.color} hover:shadow-lg hover:shadow-${body.textColor}/25 text-white font-semibold mx-auto px-3 py-2 md:py-3 md:px-6 rounded-lg cursor-pointer transition-all duration-300 flex items-center justify-center gap-2 group-hover:scale-105`}
                     >
                       Explore {body.name}
                       <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -200,10 +207,10 @@ function Explore() {
         <section className="container mx-auto px-4 py-16">
           <div className="bg-gradient-to-r from-purple-900/40 via-blue-900/40 to-cyan-900/40 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-purple-500/30 max-w-4xl mx-auto">
             <div className="text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
+              <h2 className="text-2xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
                 Ready for Your Cosmic Adventure?
               </h2>
-              <p className="text-lg text-gray-300 mb-8">
+              <p className="md:text-lg text-gray-300 mb-8">
                 Each celestial body holds unique secrets and wonders waiting to be discovered. Choose your path and
                 begin an unforgettable journey through the cosmos.
               </p>
@@ -229,7 +236,7 @@ function Explore() {
                 SPACE-WALK
               </span>
             </div>
-            <p className="text-gray-400">Exploring the universe, one celestial body at a time</p>
+            <p className="text-gray-400 text-sm md:text-md">Exploring the universe, one celestial body at a time</p>
           </div>
         </footer>
       </div>

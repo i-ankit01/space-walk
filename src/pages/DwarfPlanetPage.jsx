@@ -1,21 +1,13 @@
 "use client"
 
-import { ArrowLeft, Info, Zap, ExternalLink, Star, Globe } from "lucide-react"
+import { ArrowLeft, Info, Zap, ExternalLink, Star, Globe, Rocket } from "lucide-react"
 import spaceBackground from "../assets/space-vsit.webp"
 import "../animations/dwarfPlanet.css"
+import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import Footer2 from "../components/Footer2"
+import dwarfplanet from "../assets/dwarf-planet.webp"
 
-const dwarfPlanetTypes = [
-  { id: 1, name: "Classical Kuiper Belt Objects", color: "from-yellow-500 to-amber-600" },
-  { id: 2, name: "Plutoids", color: "from-amber-500 to-orange-600" },
-  { id: 3, name: "Scattered Disk Objects", color: "from-orange-500 to-red-600" },
-  { id: 4, name: "Detached Objects", color: "from-yellow-400 to-amber-500" },
-  { id: 5, name: "Resonant Objects", color: "from-amber-400 to-yellow-500" },
-  { id: 6, name: "Asteroid Belt Dwarf Planets", color: "from-orange-400 to-amber-500" },
-  { id: 7, name: "Binary Dwarf Planets", color: "from-yellow-600 to-orange-600" },
-  { id: 8, name: "Ice-Rich Dwarf Planets", color: "from-cyan-400 to-yellow-500" },
-  { id: 9, name: "Rocky Dwarf Planets", color: "from-red-500 to-amber-600" },
-  { id: 10, name: "Trans-Neptunian Objects", color: "from-purple-500 to-yellow-600" },
-]
 
 const dwarfPlanetFacts = [
   "There are 5 officially recognized dwarf planets",
@@ -26,10 +18,42 @@ const dwarfPlanetFacts = [
   "Most dwarf planets are found beyond Neptune's orbit",
 ]
 
-function DwarfPlanetPage({ onBack }) {
+function DwarfPlanetPage() {
   const handleTypeClick = (dwarfPlanetType) => {
     console.log(`Navigating to ${dwarfPlanetType.name} page`)
   }
+
+   const [bodies, setBodies] = useState([]);
+        const [loading, setLoading] = useState(true);
+    
+        async function fetchData(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error, status ${response.status}`)
+                }
+                const data = await response.json()
+                console.log(data)
+                return data;
+            } catch (err) {
+                console.log("failed to fetch the data", err)
+                return null
+            }
+        }
+        useEffect(() => {
+            const url = "https://api.le-systeme-solaire.net/rest/bodies/";
+            fetchData(url).then((data) => {
+                if (data && data.bodies) {
+                    const dwarfplanets = data.bodies.filter((body)=> body.bodyType === "Dwarf Planet")
+                    setBodies(dwarfplanets)
+                }
+                setLoading(false)
+            })
+        }, [])
+        useEffect(() => {
+            console.log("Updated bodies:", bodies);
+        }, [bodies]);
+    
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -59,29 +83,23 @@ function DwarfPlanetPage({ onBack }) {
         {/* Header */}
         <header className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <button
-              onClick={onBack}
+            <Link
+              to={"/explore"}
               className="flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors group"
             >
               <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform duration-300" />
               <span>Back to Exploration</span>
-            </button>
-            <div className="flex items-center gap-2">
-              <Zap className="h-6 w-6 text-purple-400" />
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
-                COSMOS
-              </span>
-            </div>
+            </Link>
           </div>
         </header>
 
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-12">
           <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-600 dwarf-planet-title">
+            <h1 className="text-4xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-600 dwarf-planet-title">
               DWARF PLANETS
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            <p className="md:text-2xl text-gray-300 max-w-3xl mx-auto">
               Small planetary bodies that orbit the Sun but haven't cleared their orbital neighborhood
             </p>
           </div>
@@ -90,16 +108,16 @@ function DwarfPlanetPage({ onBack }) {
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-16">
             {/* Image Section */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+              <div className="absolute bg-gradient-to-r from-yellow-500/20 to-amber-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
               <div className="relative bg-gray-900/60 backdrop-blur-md p-6 rounded-2xl border border-yellow-500/30 hover:border-yellow-500/60 transition-all duration-300">
                 <img
-                  src="https://via.placeholder.com/600x400/eab308/ffffff?text=Pluto+System"
+                  src= {dwarfplanet}
                   alt="Dwarf Planet"
                   className="w-full h-80 object-cover rounded-xl mb-4 hover:scale-105 transition-transform duration-500"
                 />
                 <div className="flex items-center gap-2 text-yellow-400">
                   <Info className="h-5 w-5" />
-                  <span className="text-sm">The Pluto-Charon system</span>
+                  <span className="text-sm">Dwarf Planet Representation</span>
                 </div>
               </div>
             </div>
@@ -161,14 +179,14 @@ function DwarfPlanetPage({ onBack }) {
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-500">
               Dwarf Planet Types
             </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            <p className="md:text-lg text-gray-300 max-w-2xl mx-auto">
               Explore the different categories of dwarf planets based on their location and characteristics
             </p>
           </div>
 
           {/* Types Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {dwarfPlanetTypes.map((type, index) => (
+            {bodies.map((type, index) => (
               <div
                 key={type.id}
                 className="group relative cursor-pointer dwarf-planet-type-card"
@@ -188,7 +206,7 @@ function DwarfPlanetPage({ onBack }) {
                   </div>
 
                   <h3 className="text-lg font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-amber-500 transition-all duration-300">
-                    {type.name}
+                    {type.englishName}
                   </h3>
 
                   <div className="flex items-center gap-2 text-sm text-gray-400 group-hover:text-yellow-300 transition-colors duration-300">
@@ -211,53 +229,34 @@ function DwarfPlanetPage({ onBack }) {
             ))}
           </div>
 
-          {/* More Types Indicator */}
-          <div className="text-center mt-12">
-            <div className="bg-gradient-to-r from-yellow-900/40 to-amber-900/40 backdrop-blur-md p-6 rounded-2xl border border-yellow-500/30 max-w-md mx-auto">
-              <p className="text-yellow-400 font-semibold mb-2">And many more...</p>
-              <p className="text-sm text-gray-300">
-                Discover additional dwarf planet classifications in the outer solar system
-              </p>
-            </div>
-          </div>
         </section>
 
         {/* Call to Action */}
         <section className="container mx-auto px-4 py-16">
           <div className="bg-gradient-to-r from-yellow-900/50 via-amber-900/50 to-orange-900/50 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-yellow-500/30 max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-500">
+            <h2 className="text-2xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-500">
               Ready to Discover Dwarf Planets?
             </h2>
-            <p className="text-lg text-gray-300 mb-8">
+            <p className="md:text-lg text-gray-300 mb-8">
               Explore these fascinating small worlds that challenge our understanding of planetary classification.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-yellow-600 to-amber-600 hover:from-yellow-700 hover:to-amber-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
+              <button className="bg-gradient-to-r from-yellow-600 to-amber-600 hover:from-yellow-700 hover:to-amber-700 text-white px-3 py-2 md:px-6 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
                 <Star className="h-5 w-5" />
                 Explore All Dwarf Planets
               </button>
-              <button
-                onClick={onBack}
-                className="border border-yellow-500 text-yellow-400 hover:bg-yellow-500/20 px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+              <Link
+                to={"/explore"}
+                className="border border-yellow-500 text-yellow-400 hover:bg-yellow-500/20 px-3 py-2 md:px-6 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
               >
                 Back to Exploration
-              </button>
+              </Link>
             </div>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="container mx-auto px-4 py-12 border-t border-gray-800 mt-16">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Zap className="h-6 w-6 text-purple-400" />
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
-                COSMOS
-              </span>
-            </div>
-            <p className="text-gray-400">Exploring the small worlds of our solar system</p>
-          </div>
-        </footer>
+        <Footer2/>
       </div>
     </div>
   )

@@ -1,0 +1,335 @@
+/* Discovery particle animations */
+.discovery-particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: discoveryFloat 10s ease-in-out infinite;
+}
+
+.discovery-particle-1 {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.9) 0%, transparent 70%);
+}
+
+.discovery-particle-2 {
+  top: 65%;
+  left: 80%;
+  animation-delay: 3s;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.8) 0%, transparent 70%);
+}
+
+.discovery-particle-3 {
+  top: 35%;
+  left: 70%;
+  animation-delay: 6s;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.7) 0%, transparent 70%);
+}
+
+.discovery-particle-4 {
+  top: 80%;
+  left: 25%;
+  animation-delay: 2s;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%);
+}
+
+.discovery-particle-5 {
+  top: 15%;
+  left: 45%;
+  animation-delay: 4s;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.6) 0%, transparent 70%);
+}
+
+.discovery-particle-6 {
+  top: 50%;
+  left: 10%;
+  animation-delay: 8s;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.8) 0%, transparent 70%);
+}
+
+@keyframes discoveryFloat {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  33% {
+    transform: translateY(-30px) translateX(20px) rotate(120deg);
+    opacity: 1;
+  }
+  66% {
+    transform: translateY(-15px) translateX(-15px) rotate(240deg);
+    opacity: 0.8;
+  }
+}
+
+/* Title animation */
+.discovery-title {
+  animation: discoveryGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes discoveryGlow {
+  from {
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+  }
+  to {
+    text-shadow: 0 0 30px rgba(99, 102, 241, 0.8), 0 0 40px rgba(168, 85, 247, 0.3);
+  }
+}
+
+/* Card entrance animations */
+.discovery-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: discoveryCardSlideIn 0.6s ease-out forwards;
+}
+
+.org-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: orgCardSlideIn 0.6s ease-out forwards;
+}
+
+@keyframes discoveryCardSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes orgCardSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Stats card animation */
+.stats-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: statsSlideIn 0.5s ease-out forwards;
+}
+
+.stats-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.stats-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.stats-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.stats-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes statsSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced hover effects */
+.discovery-card:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
+.org-card:hover {
+  transform: translateY(-5px) scale(1.03);
+}
+
+.stats-card:hover {
+  transform: translateY(-3px) scale(1.1);
+}
+
+/* Impact badge styling */
+.impact-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.impact-badge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.impact-badge:hover::before {
+  left: 100%;
+}
+
+/* Organization logo animation */
+.org-card .text-4xl {
+  transition: transform 0.3s ease;
+}
+
+.org-card:hover .text-4xl {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* Gradient text animations */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-gradient-to-r {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #6366f1, #8b5cf6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #4f46e5, #7c3aed);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .discovery-card,
+  .org-card {
+    margin-bottom: 1rem;
+  }
+
+  .discovery-title {
+    font-size: 3rem;
+  }
+
+  .stats-card {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .discovery-title {
+    font-size: 2.5rem;
+  }
+
+  .discovery-card,
+  .org-card {
+    padding: 1rem;
+  }
+}
+
+/* Enhanced backdrop blur */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Grid utilities */
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .md\:text-7xl {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+
+  .md\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .md\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+/* Utility classes */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+/* Button hover enhancements */
+button:hover {
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Text utilities */
+.text-transparent {
+  color: transparent;
+}
+
+.bg-clip-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, rgba(55, 65, 81, 0.4) 25%, rgba(75, 85, 99, 0.6) 50%, rgba(55, 65, 81, 0.4) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

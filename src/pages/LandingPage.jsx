@@ -3,11 +3,18 @@ import Header from '../components/Header'
 import { ChevronRight, Star, Zap, Globe } from "lucide-react"
 import spaceBackground from "../assets/space-vsit.webp"
 import Footer from '../components/Footer'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import "../animations/asteroid.css"
+import planet from "../assets/planet.jpg"
+import moon from "../assets/moon.jpg"
+import comet from "../assets/comet.jpg"
+import asteroid from "../assets/asteroid.jpg"
+import MobileNavbar from '../components/MobileNavbar'
 
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+  
   return (
     <>
         <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -34,12 +41,13 @@ const LandingPage = () => {
           <div className="asteroid-particle asteroid-particle-6"></div>
         </div>
       
+      <MobileNavbar/>
       {/* Content */}
       <div className="relative z-10">
         {/* Header */}
         
         <Header/>
-
+          
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-20 md:py-32">
           <div className="max-w-3xl mx-auto text-center">
@@ -56,9 +64,9 @@ const LandingPage = () => {
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Link>
               
-              <button className="border border-purple-500 bg-black text-purple-400 hover:text-white hover:bg-purple-500/20 px-5 py-2 rounded-md cursor-pointer transition-colors">
-                Learn More
-              </button>
+              <Link to={"/about"} className="border border-purple-500 bg-black text-purple-400 hover:text-white hover:bg-purple-500/20 px-5 py-2 rounded-md cursor-pointer transition-colors">
+                About Us
+              </Link>
             </div>
           </div>
         </section>
@@ -109,38 +117,38 @@ const LandingPage = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             Space <span className="text-purple-400">Gallery</span>
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:ml-45">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 ">
             <div className="aspect-square rounded-lg overflow-hidden">
               <img
-                src="https://via.placeholder.com/300x300/1a1a1a/ffffff?text=Galaxy"
+                src= {planet}
                 alt="Galaxy"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
               />
             </div>
             <div className="aspect-square rounded-lg overflow-hidden">
               <img
-                src="https://via.placeholder.com/300x300/1a1a1a/ffffff?text=Nebula"
+                src= {moon}
                 alt="Nebula"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
               />
             </div>
             <div className="aspect-square rounded-lg overflow-hidden">
               <img
-                src="https://via.placeholder.com/300x300/1a1a1a/ffffff?text=Planet"
+                src= {comet}
                 alt="Planet"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
               />
             </div>
             <div className="aspect-square rounded-lg overflow-hidden">
               <img
-                src="https://via.placeholder.com/300x300/1a1a1a/ffffff?text=Space+Station"
+                src= {asteroid}
                 alt="Space Station"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
               />
             </div>
           </div>
           <div className="text-center mt-8">
-            <button className="border border-purple-500 text-purple-400 hover:bg-purple-500/20 px-6 py-3 bg-black cursor-pointer hover:text-white rounded-md transition-colors">
+            <button className="border border-purple-500 text-purple-400 hover:bg-purple-500/20 px-6 py-3 bg-black cursor-pointer hover:text-white rounded-md transition-colors" onClick={()=> navigate("/explore")} >
               View Full Gallery
             </button>
           </div>
@@ -150,11 +158,11 @@ const LandingPage = () => {
         <section className="container mx-auto px-4 py-20">
           <div className="bg-gradient-to-r from-purple-900/50 to-blue-900/50 backdrop-blur-md p-8 md:p-12 rounded-2xl border border-purple-500/30">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Begin Your Cosmic Journey?</h2>
-              <p className="text-lg text-gray-300 mb-8">
+              <h2 className="text-xl md:text-4xl font-bold mb-4">Ready to Begin Your Cosmic Journey?</h2>
+              <p className="text-md text-gray-300 mb-8">
                 Join us as we venture into the unknown and uncover the secrets of the universe.
               </p>
-              <button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 text-lg rounded-md transition-all">
+              <button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-3 py-1 md:px-6 md:py-3 md:text-lg rounded-md transition-all">
                 Begin Your Adventure
               </button>
             </div>

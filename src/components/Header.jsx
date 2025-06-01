@@ -19,13 +19,10 @@ const Header = () => {
               <a href="/explore" className="text-sm hover:text-purple-400 transition-colors">
                 Exploration
               </a>
-              <a href="#" className="text-sm hover:text-purple-400 transition-colors">
+              <a href="/discoveries" className="text-sm hover:text-purple-400 transition-colors">
                 Discoveries
               </a>
-              <a href="#" className="text-sm hover:text-purple-400 transition-colors">
-                Gallery
-              </a>
-              <a href="#" className="text-sm hover:text-purple-400 transition-colors">
+              <a href="/about" className="text-sm hover:text-purple-400 transition-colors">
                 About
               </a>
             </nav>

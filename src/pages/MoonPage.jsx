@@ -1,21 +1,13 @@
 "use client"
 
-import { ArrowLeft, Info, Zap, ExternalLink, Star, Globe } from "lucide-react"
+import { ArrowLeft, Info, Zap, ExternalLink, Star, Globe, Rocket } from "lucide-react"
 import spaceBackground from "../assets/space-vsit.webp"
 import "../animations/moon.css"
+import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import Footer2 from "../components/Footer2"
+import moon from "../assets/moon.jpg"
 
-const moonTypes = [
-  { id: 1, name: "Regular Moons", color: "from-purple-500 to-pink-600" },
-  { id: 2, name: "Irregular Moons", color: "from-violet-500 to-purple-600" },
-  { id: 3, name: "Captured Asteroids", color: "from-pink-500 to-rose-600" },
-  { id: 4, name: "Shepherd Moons", color: "from-fuchsia-500 to-pink-600" },
-  { id: 5, name: "Trojan Moons", color: "from-purple-400 to-violet-500" },
-  { id: 6, name: "Co-orbital Moons", color: "from-indigo-500 to-purple-600" },
-  { id: 7, name: "Binary Moons", color: "from-pink-400 to-purple-500" },
-  { id: 8, name: "Subsurface Ocean Moons", color: "from-cyan-500 to-purple-600" },
-  { id: 9, name: "Volcanic Moons", color: "from-red-500 to-pink-600" },
-  { id: 10, name: "Ice Moons", color: "from-blue-400 to-purple-500" },
-]
 
 const moonFacts = [
   "Our solar system has over 200 known moons",
@@ -26,10 +18,41 @@ const moonFacts = [
   "Our Moon is gradually moving away from Earth",
 ]
 
-function MoonPage({ onBack }) {
+function MoonPage() {
   const handleTypeClick = (moonType) => {
     console.log(`Navigating to ${moonType.name} page`)
   }
+   const [bodies, setBodies] = useState([]);
+        const [loading, setLoading] = useState(true);
+    
+        async function fetchData(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error, status ${response.status}`)
+                }
+                const data = await response.json()
+                console.log(data)
+                return data;
+            } catch (err) {
+                console.log("failed to fetch the data", err)
+                return null
+            }
+        }
+        useEffect(() => {
+            const url = "https://api.le-systeme-solaire.net/rest/bodies/";
+            fetchData(url).then((data) => {
+                if (data && data.bodies) {
+                    const moons = data.bodies.filter((body)=> body.bodyType === "Moon")
+                    setBodies(moons)
+                }
+                setLoading(false)
+            })
+        }, [])
+        useEffect(() => {
+            console.log("Updated bodies:", bodies);
+        }, [bodies]);
+    
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -59,19 +82,13 @@ function MoonPage({ onBack }) {
         {/* Header */}
         <header className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <button
-              onClick={onBack}
+            <Link
+              to={"/explore"}
               className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors group"
             >
               <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform duration-300" />
               <span>Back to Exploration</span>
-            </button>
-            <div className="flex items-center gap-2">
-              <Zap className="h-6 w-6 text-purple-400" />
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
-                COSMOS
-              </span>
-            </div>
+            </Link>
           </div>
         </header>
 
@@ -81,7 +98,7 @@ function MoonPage({ onBack }) {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-violet-600 moon-title">
               MOONS
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-md md:text-2xl text-gray-300 max-w-3xl mx-auto">
               Natural satellites that orbit planets, from our familiar Moon to exotic worlds with hidden oceans
             </p>
           </div>
@@ -90,16 +107,16 @@ function MoonPage({ onBack }) {
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-16">
             {/* Image Section */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+              <div className="absolute bg-gradient-to-r from-purple-500/20 to-pink-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
               <div className="relative bg-gray-900/60 backdrop-blur-md p-6 rounded-2xl border border-purple-500/30 hover:border-purple-500/60 transition-all duration-300">
                 <img
-                  src="https://via.placeholder.com/600x400/a855f7/ffffff?text=Moon+Phases"
+                  src= {moon}
                   alt="Moon"
                   className="w-full h-80 object-cover rounded-xl mb-4 hover:scale-105 transition-transform duration-500"
                 />
                 <div className="flex items-center gap-2 text-purple-400">
                   <Info className="h-5 w-5" />
-                  <span className="text-sm">The phases of our Moon</span>
+                  <span className="text-sm">Respresentation of moon</span>
                 </div>
               </div>
             </div>
@@ -161,15 +178,16 @@ function MoonPage({ onBack }) {
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
               Moon Types
             </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            <p className="md:text-lg text-gray-300 max-w-2xl mx-auto">
               Explore the diverse categories of moons based on their formation and characteristics
             </p>
           </div>
 
           {/* Types Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {moonTypes.map((type, index) => (
-              <div
+            {bodies.map((type, index) => (
+              <Link
+                to={`/bodies/${type.id}`}
                 key={type.id}
                 className="group relative cursor-pointer moon-type-card"
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -188,7 +206,7 @@ function MoonPage({ onBack }) {
                   </div>
 
                   <h3 className="text-lg font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-500 transition-all duration-300">
-                    {type.name}
+                    {type.englishName}
                   </h3>
 
                   <div className="flex items-center gap-2 text-sm text-gray-400 group-hover:text-purple-300 transition-colors duration-300">
@@ -207,7 +225,7 @@ function MoonPage({ onBack }) {
                     ></div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
@@ -225,39 +243,29 @@ function MoonPage({ onBack }) {
         {/* Call to Action */}
         <section className="container mx-auto px-4 py-16">
           <div className="bg-gradient-to-r from-purple-900/50 via-pink-900/50 to-violet-900/50 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-purple-500/30 max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
+            <h2 className="text-2xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
               Ready to Explore Moons?
             </h2>
-            <p className="text-lg text-gray-300 mb-8">
+            <p className="md:text-lg text-gray-300 mb-8">
               Journey to the fascinating satellites that orbit planets throughout our solar system and beyond.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
+              <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-3 py-2 md:px-6 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
                 <Star className="h-5 w-5" />
                 Explore All Moons
               </button>
-              <button
-                onClick={onBack}
-                className="border border-purple-500 text-purple-400 hover:bg-purple-500/20 px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+              <Link
+                to={"/explore"}
+                className="border border-purple-500 text-purple-400 hover:bg-purple-500/20 px-3 py-2 md:px-6 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
               >
                 Back to Exploration
-              </button>
+              </Link>
             </div>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="container mx-auto px-4 py-12 border-t border-gray-800 mt-16">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Zap className="h-6 w-6 text-purple-400" />
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
-                COSMOS
-              </span>
-            </div>
-            <p className="text-gray-400">Discovering the satellites of our cosmic neighborhood</p>
-          </div>
-        </footer>
+        <Footer2/>
       </div>
     </div>
   )
