@@ -66,7 +66,7 @@ const team = [
     id: 2,
     name: "Dherya Pratap",
     role: "UI/UX Designer",
-    description: "Passionate about making complex space concepts and designs accessible to everyone",
+    description: "Passionate about making complex concepts and designs accessible to everyone",
     avatar: "👨‍💻",
     color: "from-orange-500 to-amber-600",
   },

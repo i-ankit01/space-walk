@@ -9,6 +9,7 @@ import dwarfplanet from "../assets/dwarf-planet.webp"
 import comet from "../assets/comet.jpg"
 import asteroid from "../assets/asteroid.jpg"
 import MobileNavbar from "../components/MobileNavbar"
+import Footer2 from "../components/Footer2"
 
 const celestialBodies = [
   {
@@ -122,7 +123,7 @@ function Explore() {
               Embark on an extraordinary journey through space and discover the fascinating celestial bodies that
               populate our universe
             </p>
-            <div className="w-max mx-auto flex items-center justify-center px-4 py-1 rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 gap-2 shadow-inner shadow-black font-semibold text-black">
+            <div className="w-max mx-auto flex items-center justify-center px-4 py-1 rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 gap-2  shadow-black font-bold text-black">
               <Sparkles className="h-5 w-5 animate-pulse" />
               <span className="text-xs md:text-lg">Choose your cosmic adventure</span>
               <Sparkles className="h-5 w-5 animate-pulse" />
@@ -228,17 +229,7 @@ function Explore() {
         </section>
 
         {/* Footer */}
-        <footer className="container mx-auto px-4 py-12 border-t border-gray-800 mt-16">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Zap className="h-6 w-6 text-purple-400" />
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
-                SPACE-WALK
-              </span>
-            </div>
-            <p className="text-gray-400 text-sm md:text-md">Exploring the universe, one celestial body at a time</p>
-          </div>
-        </footer>
+        <Footer2/>
       </div>
     </div>
   )

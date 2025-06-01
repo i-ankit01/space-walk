@@ -144,12 +144,6 @@ function DataPage({ data }) {
               <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform duration-300" />
               <span>Back to Exploration</span>
             </Link>
-            <div className="flex items-center gap-2">
-              <Zap className="h-6 w-6 text-purple-400" />
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
-                SPACE-WALK
-              </span>
-            </div>
           </div>
         </header>
 
@@ -158,13 +152,13 @@ function DataPage({ data }) {
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-4 mb-6">
               <div className={`bg-gradient-to-r ${colorTheme} p-4 rounded-2xl`}>
-                <IconComponent className="h-12 w-12 text-white" />
+                <IconComponent className="md:h-12 md:w-12 text-white" />
               </div>
               <div>
-                <h1 className={`text-5xl md:text-7xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r ${colorTheme} data-title`}>
+                <h1 className={`text-4xl md:text-7xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r ${colorTheme} data-title`}>
                   {data?.englishName || data?.name || "Unknown Body"}
                 </h1>
-                <p className="text-xl text-gray-300">
+                <p className="md:text-xl text-gray-300">
                   {data?.bodyType || "Celestial Body"} • {data?.name !== data?.englishName ? data?.name : ""}
                 </p>
               </div>
@@ -273,12 +267,12 @@ function DataPage({ data }) {
                 <Orbit className="h-8 w-8" />
                 Orbital Characteristics
               </h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 md:gap-6">
                 {orbitalData.map((item, index) => {
                   const ItemIcon = item.icon
-                  return (
+                  return ( 
                     <div key={index} className="data-card group">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-center gap-4 mb-2">
                         <div className={`bg-gradient-to-r ${colorTheme} p-2 rounded-lg group-hover:scale-110 transition-transform duration-300`}>
                           <ItemIcon className="h-5 w-5 text-white" />
                         </div>
@@ -393,21 +387,21 @@ function DataPage({ data }) {
     {/* Optional light overlay */}
     <div className="absolute inset-0 bg-white/10 rounded-3xl pointer-events-none mix-blend-overlay" />
 
-    <h2 className={`relative text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r ${colorTheme.replace('500', '300').replace('600', '400')}`}>
+    <h2 className={`relative text-3xl md:text-4xl font-bold mb-6 bg-clip-text bg-gradient-to-r text-white`}>
       Explore More Celestial Bodies
     </h2>
-    <p className="relative text-lg text-gray-100 mb-8">
+    <p className="relative md:text-lg text-gray-100 mb-8">
       Discover the fascinating characteristics and data of other planets, moons, asteroids, and comets in our cosmic database.
     </p>
 
     <div className="relative flex flex-col sm:flex-row gap-4 justify-center">
-      <button className={`bg-gradient-to-r border border-white/20 cursor-pointer hover:bg-white/10 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2`}>
+      <button className={`bg-gradient-to-r border border-white/20 cursor-pointer hover:bg-white/10 text-white px-3 py-2 md:px-6 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2`}>
         <Star className="h-5 w-5" />
         View Similar Bodies
       </button>
       <Link
         to={"/explore"}
-        className="border border-white/30 text-white hover:bg-white/10 px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+        className="border border-white/30 text-white hover:bg-white/10 px-3 py-2 md:px-6 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
       >
         Back to Exploration
       </Link>

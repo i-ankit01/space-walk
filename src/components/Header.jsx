@@ -1,5 +1,6 @@
 import React from 'react'
 import { Rocket } from "lucide-react"
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
@@ -8,9 +9,9 @@ const Header = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 ml-3">
               <Rocket className="h-6 w-6 text-purple-400" />
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
+              <Link to={"/"} className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
                 SPACE-WALK
-              </span>
+              </Link>
             </div>
             <nav className="hidden md:flex items-center gap-6">
               <a href="/" className="text-sm hover:text-purple-400 transition-colors">
