@@ -59,12 +59,12 @@ const LandingPage = () => {
               planets, the adventure awaits.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center ">
-              <Link to={"/explore"}  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-5 py-2 rounded-md cursor-pointer flex items-center justify-center transition-all">
+              <Link to={"/explore"}  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-5 py-2 font-semibold rounded-md cursor-pointer flex items-center justify-center transition-all">
                 Start Exploring
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Link>
               
-              <Link to={"/about"} className="border border-purple-500 bg-black text-purple-400 hover:text-white hover:bg-purple-500/20 px-5 py-2 rounded-md cursor-pointer transition-colors">
+              <Link to={"/about"} className="border border-purple-500 bg-black text-purple-400 hover:text-white hover:bg-purple-500/20 font-semibold px-5 py-2 rounded-md cursor-pointer transition-colors">
                 About Us
               </Link>
             </div>

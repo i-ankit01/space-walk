@@ -123,7 +123,7 @@ function Explore() {
               Embark on an extraordinary journey through space and discover the fascinating celestial bodies that
               populate our universe
             </p>
-            <div className="w-max mx-auto flex items-center justify-center px-4 py-1 rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 gap-2  shadow-black font-bold text-black">
+            <div className="w-max mx-auto flex items-center justify-center px-4 py-1 rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 gap-2 md:shadow-inner shadow-black font-bold text-black">
               <Sparkles className="h-5 w-5 animate-pulse" />
               <span className="text-xs md:text-lg">Choose your cosmic adventure</span>
               <Sparkles className="h-5 w-5 animate-pulse" />
